@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Button.gd" type="Script" id=1]
+[ext_resource path="res://dog.jpeg" type="Texture" id=2]
+[ext_resource path="res://Grider.gd" type="Script" id=3]
+
+[node name="Control" type="Node2D"]
+
+[node name="FileDialog" type="FileDialog" parent="."]
+margin_left = -1.0
+margin_right = 712.0
+margin_bottom = 488.0
+window_title = "Open a File"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.png ; PNG Images" )
+current_dir = "/home/alfredbaudisch/Desktop/Grider"
+current_file = "default_env.tres"
+current_path = "/home/alfredbaudisch/Desktop/Grider/default_env.tres"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 21.0
+margin_top = 15.0
+margin_right = 112.0
+margin_bottom = 35.0
+text = "Open Dialog"
+script = ExtResource( 1 )
+file_dialog = NodePath("../FileDialog")
+
+[node name="Button4" type="Button" parent="."]
+margin_left = 21.8145
+margin_top = 44.3223
+margin_right = 112.815
+margin_bottom = 64.3223
+text = "Save As"
+script = ExtResource( 1 )
+file_dialog = NodePath("../FileDialog")
+save_as_dialog = NodePath("../SaveAsDialog")
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 130.0
+margin_top = 16.0
+margin_right = 246.0
+margin_bottom = 36.0
+text = "Take Screenshot"
+
+[node name="Button3" type="Button" parent="."]
+margin_left = 129.0
+margin_top = 47.0001
+margin_right = 245.0
+margin_bottom = 67.0001
+text = "Take Screenshot"
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+margin_left = 65.1849
+margin_top = 107.432
+margin_right = 1078.19
+margin_bottom = 722.432
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1013, 615 )
+own_world = true
+transparent_bg = true
+handle_input_locally = false
+msaa = 2
+usage = 0
+render_target_update_mode = 3
+
+[node name="Camera2D" type="Camera2D" parent="ViewportContainer/Viewport"]
+current = true
+
+[node name="Photo" type="Sprite" parent="ViewportContainer/Viewport"]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 450, 450 )
+script = ExtResource( 3 )
+
+[node name="Grid" type="Node2D" parent="ViewportContainer/Viewport/Photo"]
+
+[node name="SaveAsDialog" type="FileDialog" parent="."]
+margin_left = 38.0964
+margin_top = 57.83
+margin_right = 614.096
+margin_bottom = 457.83
+access = 2
+current_dir = "/home/alfredbaudisch/Desktop/Grider"
+current_file = "Button.gd"
+current_path = "/home/alfredbaudisch/Desktop/Grider/Button.gd"
+
+[connection signal="file_selected" from="FileDialog" to="Button" method="_on_FileDialog_file_selected"]
+[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
+[connection signal="pressed" from="Button4" to="Button4" method="_on_Button4_pressed"]
+[connection signal="pressed" from="Button3" to="ViewportContainer/Viewport/Photo" method="_on_Button2_pressed"]
+[connection signal="file_selected" from="SaveAsDialog" to="Button4" method="_on_SaveAsDialog_file_selected"]
