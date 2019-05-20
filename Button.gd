@@ -1,6 +1,6 @@
 extends Button
 
-onready var photo = get_parent().get_node("ViewportContainer/Viewport/Photo")
+export(NodePath) var photo
 export(NodePath) var file_dialog
 export(NodePath) var save_as_dialog
 
@@ -102,3 +102,11 @@ func _on_Button4_pressed():
 
 func _on_SaveAsDialog_file_selected(path):
 	photo.set_save_path(path)
+
+
+func _on_Width_value_changed(value):
+	print(value)
+
+
+func _on_Visible_toggled(button_pressed):
+	print(button_pressed)

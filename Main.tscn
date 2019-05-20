@@ -1,65 +1,481 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Button.gd" type="Script" id=1]
-[ext_resource path="res://dog.jpeg" type="Texture" id=2]
+[ext_resource path="res://scripts/Controller.gd" type="Script" id=1]
+[ext_resource path="res://Button.gd" type="Script" id=2]
 [ext_resource path="res://Grider.gd" type="Script" id=3]
 
-[node name="Control" type="Node2D"]
+[node name="Control" type="Control"]
+margin_right = 116.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 1024, 600 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+photo_path = NodePath("MainContainer/PhotoScrollContainer/HBoxContainer/ViewportContainer/Viewport/Photo")
+open_file_dialog_path = NodePath("Dialogs/OpenFileDialog")
+save_as_dialog_path = NodePath("Dialogs/SaveAsDialog")
 
-[node name="FileDialog" type="FileDialog" parent="."]
-margin_left = -1.0
-margin_right = 712.0
-margin_bottom = 488.0
-window_title = "Open a File"
-mode = 0
-access = 2
-filters = PoolStringArray( "*.png ; PNG Images" )
-current_dir = "/home/alfredbaudisch/Desktop/Grider"
-current_file = "default_env.tres"
-current_path = "/home/alfredbaudisch/Desktop/Grider/default_env.tres"
+[node name="MainContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="."]
-margin_left = 21.0
-margin_top = 15.0
+[node name="Toolbar" type="HBoxContainer" parent="MainContainer"]
+margin_right = 1010.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="MainActions" type="HBoxContainer" parent="MainContainer/Toolbar"]
+margin_right = 300.0
+margin_bottom = 80.0
+
+[node name="LoadSave" type="VBoxContainer" parent="MainContainer/Toolbar/MainActions"]
+editor/display_folded = true
+margin_right = 97.0
+margin_bottom = 80.0
+
+[node name="LoadPhoto" type="Button" parent="MainContainer/Toolbar/MainActions/LoadSave"]
+margin_right = 97.0
+margin_bottom = 20.0
+text = "Load Photo"
+script = ExtResource( 2 )
+file_dialog = NodePath("../../../../../Dialogs/OpenFileDialog")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MainContainer/Toolbar/MainActions/LoadSave"]
+margin_top = 24.0
+margin_right = 97.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 0, 2 )
+
+[node name="SetSavePath" type="Button" parent="MainContainer/Toolbar/MainActions/LoadSave"]
+margin_top = 30.0
+margin_right = 97.0
+margin_bottom = 50.0
+text = "Set Save Path"
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="MainContainer/Toolbar/MainActions/LoadSave"]
+margin_top = 54.0
+margin_right = 97.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 0, 2 )
+
+[node name="Save" type="Button" parent="MainContainer/Toolbar/MainActions/LoadSave"]
+modulate = Color( 0.419608, 1, 0.482353, 1 )
+margin_top = 60.0
+margin_right = 97.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 16 )
+custom_colors/font_color_disabled = Color( 0.588235, 0.305882, 0.305882, 1 )
+custom_colors/font_color = Color( 0, 1, 0.0392157, 1 )
+disabled = true
+text = "SAVE"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MainContainer/Toolbar/MainActions"]
+margin_left = 101.0
+margin_right = 111.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="ImageOptions" type="VBoxContainer" parent="MainContainer/Toolbar/MainActions"]
+margin_left = 115.0
+margin_right = 300.0
+margin_bottom = 80.0
+
+[node name="Label" type="Label" parent="MainContainer/Toolbar/MainActions/ImageOptions"]
+margin_right = 185.0
+margin_bottom = 14.0
+text = "Options"
+
+[node name="Scale" type="HBoxContainer" parent="MainContainer/Toolbar/MainActions/ImageOptions"]
+margin_top = 18.0
+margin_right = 185.0
+margin_bottom = 34.0
+
+[node name="Label" type="Label" parent="MainContainer/Toolbar/MainActions/ImageOptions/Scale"]
+margin_top = 1.0
+margin_right = 37.0
+margin_bottom = 15.0
+text = "Scale:"
+
+[node name="Scale" type="HSlider" parent="MainContainer/Toolbar/MainActions/ImageOptions/Scale"]
+margin_left = 41.0
+margin_right = 141.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 100, 0 )
+min_value = 0.05
+max_value = 1.0
+step = 0.05
+value = 0.05
+
+[node name="ScaleDisplay" type="Label" parent="MainContainer/Toolbar/MainActions/ImageOptions/Scale"]
+margin_left = 145.0
+margin_top = 1.0
+margin_right = 181.0
+margin_bottom = 15.0
+text = "100%"
+
+[node name="GridWithPhoto" type="CheckBox" parent="MainContainer/Toolbar/MainActions/ImageOptions"]
+margin_top = 38.0
+margin_right = 185.0
+margin_bottom = 62.0
+pressed = true
+text = "Grid and Grid with Photo"
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="MainContainer/Toolbar"]
+margin_left = 304.0
+margin_right = 314.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Grids" type="HBoxContainer" parent="MainContainer/Toolbar"]
+margin_left = 318.0
+margin_right = 1010.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="Contour" type="VBoxContainer" parent="MainContainer/Toolbar/Grids"]
+margin_right = 122.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="MainContainer/Toolbar/Grids/Contour"]
+margin_right = 122.0
+margin_bottom = 14.0
+text = "Grid: Contour"
+
+[node name="MainContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/Contour"]
+margin_top = 18.0
+margin_right = 122.0
+margin_bottom = 42.0
+
+[node name="Visible" type="CheckBox" parent="MainContainer/Toolbar/Grids/Contour/MainContainer"]
+margin_right = 77.0
+margin_bottom = 24.0
+text = "Visible?"
+
+[node name="Color" type="ColorPickerButton" parent="MainContainer/Toolbar/Grids/Contour/MainContainer"]
+margin_left = 81.0
+margin_right = 117.0
+margin_bottom = 24.0
+text = "      "
+
+[node name="WidthContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/Contour"]
+margin_top = 46.0
+margin_right = 122.0
+margin_bottom = 62.0
+
+[node name="Label" type="Label" parent="MainContainer/Toolbar/Grids/Contour/WidthContainer"]
+margin_top = 1.0
+margin_right = 42.0
+margin_bottom = 15.0
+text = "Width:"
+
+[node name="Width" type="HSlider" parent="MainContainer/Toolbar/Grids/Contour/WidthContainer"]
+margin_left = 46.0
+margin_right = 102.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+rounded = true
+
+[node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/Contour/WidthContainer"]
+margin_left = 106.0
+margin_top = 1.0
+margin_right = 122.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 16, 0 )
+text = "1"
+align = 1
+
+[node name="HSplitContainer4" type="HSplitContainer" parent="MainContainer/Toolbar/Grids"]
+margin_left = 126.0
+margin_right = 136.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Thirds" type="VBoxContainer" parent="MainContainer/Toolbar/Grids"]
+editor/display_folded = true
+margin_left = 140.0
+margin_right = 262.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="MainContainer/Toolbar/Grids/Thirds"]
+margin_right = 122.0
+margin_bottom = 14.0
+text = "Grid: Thirds"
+
+[node name="MainContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/Thirds"]
+margin_top = 18.0
+margin_right = 122.0
+margin_bottom = 42.0
+
+[node name="Visible" type="CheckBox" parent="MainContainer/Toolbar/Grids/Thirds/MainContainer"]
+margin_right = 77.0
+margin_bottom = 24.0
+text = "Visible?"
+
+[node name="Color" type="ColorPickerButton" parent="MainContainer/Toolbar/Grids/Thirds/MainContainer"]
+margin_left = 81.0
+margin_right = 117.0
+margin_bottom = 24.0
+text = "      "
+
+[node name="WidthContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/Thirds"]
+margin_top = 46.0
+margin_right = 122.0
+margin_bottom = 62.0
+
+[node name="Label" type="Label" parent="MainContainer/Toolbar/Grids/Thirds/WidthContainer"]
+margin_top = 1.0
+margin_right = 42.0
+margin_bottom = 15.0
+text = "Width:"
+
+[node name="Width" type="HSlider" parent="MainContainer/Toolbar/Grids/Thirds/WidthContainer"]
+margin_left = 46.0
+margin_right = 102.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+rounded = true
+
+[node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/Thirds/WidthContainer"]
+margin_left = 106.0
+margin_top = 1.0
+margin_right = 122.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 16, 0 )
+text = "1	"
+align = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MainContainer/Toolbar/Grids"]
+margin_left = 266.0
+margin_right = 276.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="MinorThirds" type="VBoxContainer" parent="MainContainer/Toolbar/Grids"]
+margin_left = 280.0
+margin_right = 402.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="MainContainer/Toolbar/Grids/MinorThirds"]
+margin_right = 122.0
+margin_bottom = 14.0
+text = "Grid: Minor Thirds"
+
+[node name="MainContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/MinorThirds"]
+margin_top = 18.0
+margin_right = 122.0
+margin_bottom = 42.0
+
+[node name="Visible" type="CheckBox" parent="MainContainer/Toolbar/Grids/MinorThirds/MainContainer"]
+margin_right = 77.0
+margin_bottom = 24.0
+text = "Visible?"
+
+[node name="Color" type="ColorPickerButton" parent="MainContainer/Toolbar/Grids/MinorThirds/MainContainer"]
+margin_left = 81.0
+margin_right = 117.0
+margin_bottom = 24.0
+text = "      "
+
+[node name="WidthContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/MinorThirds"]
+margin_top = 46.0
+margin_right = 122.0
+margin_bottom = 62.0
+
+[node name="Label" type="Label" parent="MainContainer/Toolbar/Grids/MinorThirds/WidthContainer"]
+margin_top = 1.0
+margin_right = 42.0
+margin_bottom = 15.0
+text = "Width:"
+
+[node name="Width" type="HSlider" parent="MainContainer/Toolbar/Grids/MinorThirds/WidthContainer"]
+margin_left = 46.0
+margin_right = 102.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+rounded = true
+
+[node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/MinorThirds/WidthContainer"]
+margin_left = 106.0
+margin_top = 1.0
+margin_right = 122.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 16, 0 )
+text = "1	"
+align = 1
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="MainContainer/Toolbar/Grids"]
+margin_left = 406.0
+margin_right = 416.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="CentralCross" type="VBoxContainer" parent="MainContainer/Toolbar/Grids"]
+margin_left = 420.0
+margin_right = 542.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="MainContainer/Toolbar/Grids/CentralCross"]
+margin_right = 122.0
+margin_bottom = 14.0
+text = "Grid: Central Cross"
+
+[node name="MainContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/CentralCross"]
+margin_top = 18.0
+margin_right = 122.0
+margin_bottom = 42.0
+
+[node name="Visible" type="CheckBox" parent="MainContainer/Toolbar/Grids/CentralCross/MainContainer"]
+margin_right = 77.0
+margin_bottom = 24.0
+text = "Visible?"
+
+[node name="Color" type="ColorPickerButton" parent="MainContainer/Toolbar/Grids/CentralCross/MainContainer"]
+margin_left = 81.0
+margin_right = 117.0
+margin_bottom = 24.0
+text = "      "
+
+[node name="WidthContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/CentralCross"]
+margin_top = 46.0
+margin_right = 122.0
+margin_bottom = 62.0
+
+[node name="Label" type="Label" parent="MainContainer/Toolbar/Grids/CentralCross/WidthContainer"]
+margin_top = 1.0
+margin_right = 42.0
+margin_bottom = 15.0
+text = "Width:"
+
+[node name="Width" type="HSlider" parent="MainContainer/Toolbar/Grids/CentralCross/WidthContainer"]
+margin_left = 46.0
+margin_right = 102.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+rounded = true
+
+[node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/CentralCross/WidthContainer"]
+margin_left = 106.0
+margin_top = 1.0
+margin_right = 122.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 16, 0 )
+text = "1	"
+align = 1
+
+[node name="HSplitContainer3" type="HSplitContainer" parent="MainContainer/Toolbar/Grids"]
+margin_left = 546.0
+margin_right = 556.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="MainDiagonals" type="VBoxContainer" parent="MainContainer/Toolbar/Grids"]
+margin_left = 560.0
+margin_right = 692.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="MainContainer/Toolbar/Grids/MainDiagonals"]
+margin_right = 132.0
+margin_bottom = 14.0
+text = "Grid: Main Diagonals"
+
+[node name="MainContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/MainDiagonals"]
+editor/display_folded = true
+margin_top = 18.0
+margin_right = 132.0
+margin_bottom = 42.0
+
+[node name="Visible" type="CheckBox" parent="MainContainer/Toolbar/Grids/MainDiagonals/MainContainer"]
+margin_right = 77.0
+margin_bottom = 24.0
+text = "Visible?"
+
+[node name="Color" type="ColorPickerButton" parent="MainContainer/Toolbar/Grids/MainDiagonals/MainContainer"]
+margin_left = 81.0
+margin_right = 117.0
+margin_bottom = 24.0
+text = "      "
+
+[node name="WidthContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/MainDiagonals"]
+editor/display_folded = true
+margin_top = 46.0
+margin_right = 132.0
+margin_bottom = 62.0
+
+[node name="Label" type="Label" parent="MainContainer/Toolbar/Grids/MainDiagonals/WidthContainer"]
+margin_top = 1.0
+margin_right = 42.0
+margin_bottom = 15.0
+text = "Width:"
+
+[node name="Width" type="HSlider" parent="MainContainer/Toolbar/Grids/MainDiagonals/WidthContainer"]
+margin_left = 46.0
 margin_right = 112.0
-margin_bottom = 35.0
-text = "Open Dialog"
-script = ExtResource( 1 )
-file_dialog = NodePath("../FileDialog")
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+rounded = true
 
-[node name="Button4" type="Button" parent="."]
-margin_left = 21.8145
-margin_top = 44.3223
-margin_right = 112.815
-margin_bottom = 64.3223
-text = "Save As"
-script = ExtResource( 1 )
-file_dialog = NodePath("../FileDialog")
-save_as_dialog = NodePath("../SaveAsDialog")
+[node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/MainDiagonals/WidthContainer"]
+margin_left = 116.0
+margin_top = 1.0
+margin_right = 132.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 16, 0 )
+text = "1	"
+align = 1
 
-[node name="Button2" type="Button" parent="."]
-margin_left = 130.0
-margin_top = 16.0
-margin_right = 246.0
-margin_bottom = 36.0
-text = "Take Screenshot"
+[node name="VSplitContainer" type="VSplitContainer" parent="MainContainer"]
+margin_top = 84.0
+margin_right = 1010.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 0, 10 )
+size_flags_horizontal = 3
 
-[node name="Button3" type="Button" parent="."]
-margin_left = 129.0
-margin_top = 47.0001
-margin_right = 245.0
-margin_bottom = 67.0001
-text = "Take Screenshot"
+[node name="PhotoScrollContainer" type="ScrollContainer" parent="MainContainer"]
+margin_top = 98.0
+margin_right = 1010.0
+margin_bottom = 586.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="ViewportContainer" type="ViewportContainer" parent="."]
-margin_left = 65.1849
-margin_top = 107.432
-margin_right = 1078.19
-margin_bottom = 722.432
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/PhotoScrollContainer"]
+margin_right = 1010.0
+margin_bottom = 488.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ViewportContainer" type="ViewportContainer" parent="MainContainer/PhotoScrollContainer/HBoxContainer"]
+margin_right = 1010.0
+margin_bottom = 488.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 stretch = true
 
-[node name="Viewport" type="Viewport" parent="ViewportContainer"]
-size = Vector2( 1013, 615 )
+[node name="Viewport" type="Viewport" parent="MainContainer/PhotoScrollContainer/HBoxContainer/ViewportContainer"]
+size = Vector2( 1010, 488 )
 own_world = true
 transparent_bg = true
 handle_input_locally = false
@@ -67,29 +483,64 @@ msaa = 2
 usage = 0
 render_target_update_mode = 3
 
-[node name="Camera2D" type="Camera2D" parent="ViewportContainer/Viewport"]
+[node name="Camera2D" type="Camera2D" parent="MainContainer/PhotoScrollContainer/HBoxContainer/ViewportContainer/Viewport"]
 current = true
 
-[node name="Photo" type="Sprite" parent="ViewportContainer/Viewport"]
+[node name="Photo" type="Sprite" parent="MainContainer/PhotoScrollContainer/HBoxContainer/ViewportContainer/Viewport"]
 scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 450, 450 )
 script = ExtResource( 3 )
 
-[node name="Grid" type="Node2D" parent="ViewportContainer/Viewport/Photo"]
+[node name="Grid" type="Node2D" parent="MainContainer/PhotoScrollContainer/HBoxContainer/ViewportContainer/Viewport/Photo"]
 
-[node name="SaveAsDialog" type="FileDialog" parent="."]
-margin_left = 38.0964
-margin_top = 57.83
-margin_right = 614.096
-margin_bottom = 457.83
+[node name="PhotoVScrollBar" type="VScrollBar" parent="MainContainer/PhotoScrollContainer/HBoxContainer"]
+visible = false
+margin_left = 998.0
+margin_right = 1010.0
+margin_bottom = 506.0
+
+[node name="Dialogs" type="Node" parent="."]
+editor/display_folded = true
+
+[node name="OpenFileDialog" type="FileDialog" parent="Dialogs"]
+margin_left = 46.5
+margin_top = 38.0
+margin_right = 640.5
+margin_bottom = 465.0
+window_title = "Open a File"
+mode = 0
 access = 2
+filters = PoolStringArray( "*.png,*.jpg,*.jpeg ; PNG and JPG Images" )
+current_dir = "/home/alfredbaudisch/Desktop/Grider"
+current_file = "default_env.tres"
+current_path = "/home/alfredbaudisch/Desktop/Grider/default_env.tres"
+
+[node name="SaveAsDialog" type="FileDialog" parent="Dialogs"]
+margin_left = 49.0
+margin_top = 38.0
+margin_right = 648.0
+margin_bottom = 464.0
+access = 2
+filters = PoolStringArray( "*.png; PNG Image" )
 current_dir = "/home/alfredbaudisch/Desktop/Grider"
 current_file = "Button.gd"
 current_path = "/home/alfredbaudisch/Desktop/Grider/Button.gd"
 
-[connection signal="file_selected" from="FileDialog" to="Button" method="_on_FileDialog_file_selected"]
-[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
-[connection signal="pressed" from="Button4" to="Button4" method="_on_Button4_pressed"]
-[connection signal="pressed" from="Button3" to="ViewportContainer/Viewport/Photo" method="_on_Button2_pressed"]
-[connection signal="file_selected" from="SaveAsDialog" to="Button4" method="_on_SaveAsDialog_file_selected"]
+[connection signal="pressed" from="MainContainer/Toolbar/MainActions/LoadSave/LoadPhoto" to="." method="_on_LoadPhoto_pressed"]
+[connection signal="pressed" from="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" to="." method="_on_SetSavePath_pressed"]
+[connection signal="pressed" from="MainContainer/Toolbar/MainActions/LoadSave/Save" to="." method="_on_Save_pressed"]
+[connection signal="value_changed" from="MainContainer/Toolbar/MainActions/ImageOptions/Scale/Scale" to="." method="_on_Scale_value_changed"]
+[connection signal="pressed" from="MainContainer/Toolbar/MainActions/ImageOptions/GridWithPhoto" to="." method="_on_GridWithPhoto_pressed"]
+[connection signal="toggled" from="MainContainer/Toolbar/Grids/Contour/MainContainer/Visible" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Visible_toggled"]
+[connection signal="value_changed" from="MainContainer/Toolbar/Grids/Contour/WidthContainer/Width" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Width_value_changed"]
+[connection signal="toggled" from="MainContainer/Toolbar/Grids/Thirds/MainContainer/Visible" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Visible_toggled"]
+[connection signal="value_changed" from="MainContainer/Toolbar/Grids/Thirds/WidthContainer/Width" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Width_value_changed"]
+[connection signal="toggled" from="MainContainer/Toolbar/Grids/MinorThirds/MainContainer/Visible" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Visible_toggled"]
+[connection signal="value_changed" from="MainContainer/Toolbar/Grids/MinorThirds/WidthContainer/Width" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Width_value_changed"]
+[connection signal="toggled" from="MainContainer/Toolbar/Grids/CentralCross/MainContainer/Visible" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Visible_toggled"]
+[connection signal="value_changed" from="MainContainer/Toolbar/Grids/CentralCross/WidthContainer/Width" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Width_value_changed"]
+[connection signal="toggled" from="MainContainer/Toolbar/Grids/MainDiagonals/MainContainer/Visible" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Visible_toggled"]
+[connection signal="value_changed" from="MainContainer/Toolbar/Grids/MainDiagonals/WidthContainer/Width" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Width_value_changed"]
+[connection signal="value_changed" from="MainContainer/PhotoScrollContainer/HBoxContainer/PhotoVScrollBar" to="MainContainer/PhotoScrollContainer/HBoxContainer/ViewportContainer/Viewport/Photo" method="_on_PhotoVScrollBar_value_changed"]
+[connection signal="file_selected" from="Dialogs/OpenFileDialog" to="." method="_on_OpenFileDialog_file_selected"]
+[connection signal="file_selected" from="Dialogs/SaveAsDialog" to="." method="_on_SaveAsDialog_file_selected"]

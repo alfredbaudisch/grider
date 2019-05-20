@@ -9,26 +9,29 @@ enum GRID_TYPES {
 	Thirds
 	MinorThirds
 	CentralCross
-	CentralDiagonals	
+	CentralDiagonals
 }
 
 onready var grid = get_node("Grid")
-onready var viewport_container = get_node("/root/Control/ViewportContainer")
+onready var viewport_container = get_node("../../../ViewportContainer")
 
 var image_scale := 1.0 setget set_scale,get_scale
 
-var settings = {
+export var settings = {
 	GRID_TYPES.Contour: {
+		name = "Contour",
 		visible = true,
 		color = Color(255, 0, 0),
 		width = 2
 	},
 	GRID_TYPES.Thirds: {
+		name = "Thirds",
 		visible = true,
 		color = Color(0, 255, 0),
 		width = 8
 	},
 	GRID_TYPES.MinorThirds: {
+		name = "MinorThirds",
 		visible = true,
 		color = Color(255, 0, 0),
 		width = 2,
@@ -36,11 +39,13 @@ var settings = {
 		with_central_cross = false # TODO: implement me
 	},
 	GRID_TYPES.CentralCross: {
+		name = "CentralCross",
 		visible = true,
 		color = Color(255, 0, 0),
 		width = 2
 	},
 	GRID_TYPES.CentralDiagonals: {
+		name = "MainDiagonals",
 		visible = true,
 		color = Color(255, 0, 0),
 		width = 2
@@ -48,8 +53,12 @@ var settings = {
 } setget ,get_grid_settings
 
 var save_path setget set_save_path
+var save_grid_with_photo := true setget set_save_grid_with_photo,get_save_grid_with_photo
 
 func set_save_path(path): save_path = path
+
+func set_save_grid_with_photo(value): save_grid_with_photo = value
+func get_save_grid_with_photo(): return save_grid_with_photo
 
 func set_scale(value): image_scale = value
 func get_scale(): return image_scale
@@ -164,9 +173,6 @@ func _draw_central_diagonals(size):
 	_draw_line(Vector2(0, 0), Vector2(size.x, size.y), settings[GRID_TYPES.CentralDiagonals].width, settings[GRID_TYPES.CentralDiagonals].color)
 	_draw_line(Vector2(0, size.y), Vector2(size.x, 0), settings[GRID_TYPES.CentralDiagonals].width, settings[GRID_TYPES.CentralDiagonals].color)
 
-func _ready():
-	reload()
-
 func _draw_line(pos, size, width = 4, color = Color(255, 0, 0)):
 	var line = Line2D.new()
 	line.set_points(PoolVector2Array([pos, size]))
@@ -176,13 +182,13 @@ func _draw_line(pos, size, width = 4, color = Color(255, 0, 0)):
 	grid.add_child(line)
 
 func _on_Button2_pressed():
-	_capture_to_file()
+	capture_to_file()
 			
-func _capture_to_file():
+func capture_to_file():
 	var original = self_modulate
 	
 	for action in range(3):
-		if action == 0:
+		if action == 0 and save_grid_with_photo:
 			get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)	
 			# Let two frames pass to make sure the screen was captured
 			yield(get_tree(), "idle_frame")
@@ -201,3 +207,6 @@ func _save_to_file(file_name):
 	var img = get_viewport().get_texture().get_data()
 	img.flip_y()
 	img.save_png(file_name)
+
+func _on_PhotoVScrollBar_value_changed(value):
+	print(value)
