@@ -3,6 +3,7 @@ extends Sprite
 const LINES_GROUP = "GridLines"
 const DEFAULT_GRID_PATH = "grid.png"
 const DEFAULT_GRID_WITH_PHOTO_PATH = "grid-with-photo.png"
+const DEFAULT_GRID_WITH_PHOTO_APPEND = "-with-photo"
 
 enum GRID_TYPES {
 	Contour,
@@ -53,9 +54,20 @@ export var settings = {
 } setget ,get_grid_settings
 
 var save_path setget set_save_path
+var save_grid_with_photo_path = null
+
 var save_grid_with_photo := true setget set_save_grid_with_photo,get_save_grid_with_photo
 
-func set_save_path(path): save_path = path
+func set_save_path(path):
+	save_path = path
+	
+	var regex = RegEx.new()
+	regex.compile("^(.*)\\.png$")
+	var result = regex.search(save_path)
+	
+	# Append "-with-photo"
+	if result and result.get_group_count() == 1:
+		save_grid_with_photo_path = result.get_string(1) + DEFAULT_GRID_WITH_PHOTO_APPEND + ".png"
 
 func set_save_grid_with_photo(value): save_grid_with_photo = value
 func get_save_grid_with_photo(): return save_grid_with_photo
@@ -182,7 +194,8 @@ func capture_to_file():
 			# Let two frames pass to make sure the screen was captured
 			yield(get_tree(), "idle_frame")
 			yield(get_tree(), "idle_frame")
-			_save_to_file(save_path if save_path else DEFAULT_GRID_WITH_PHOTO_PATH)			
+			_save_to_file(save_grid_with_photo_path if save_grid_with_photo_path else DEFAULT_GRID_WITH_PHOTO_PATH)	
+					
 		elif action == 1:
 			self_modulate = Color(255, 255, 255, 0)
 			get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)

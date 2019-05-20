@@ -16,8 +16,6 @@ onready var grids = get_node("MainContainer/Toolbar/Grids")
 onready var image_options = get_node("MainContainer/Toolbar/MainActions/ImageOptions")
 
 var loaded_photo_path = null
-var save_path : String = default_grid_path
-var save_path_with_photo : String = default_grid_with_photo_path
 
 func _ready():
 	_reload_ui()
@@ -83,7 +81,7 @@ func _on_OpenFileDialog_file_selected(path):
 	photo.reload()
 
 func _on_SaveAsDialog_file_selected(path):
-	save_path = path
+	photo.set_save_path(path)
 
 #
 # Image Options
