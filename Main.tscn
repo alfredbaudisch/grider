@@ -179,7 +179,7 @@ margin_right = 102.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 1.0
-max_value = 20.0
+max_value = 40.0
 value = 1.0
 rounded = true
 
@@ -242,7 +242,7 @@ margin_right = 102.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 1.0
-max_value = 20.0
+max_value = 40.0
 value = 1.0
 rounded = true
 
@@ -305,7 +305,7 @@ margin_right = 102.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 1.0
-max_value = 20.0
+max_value = 40.0
 value = 1.0
 rounded = true
 
@@ -368,7 +368,7 @@ margin_right = 102.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 1.0
-max_value = 20.0
+max_value = 40.0
 value = 1.0
 rounded = true
 
@@ -431,7 +431,7 @@ margin_right = 112.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 1.0
-max_value = 20.0
+max_value = 40.0
 value = 1.0
 rounded = true
 

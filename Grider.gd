@@ -21,34 +21,34 @@ export var settings = {
 	GRID_TYPES.Contour: {
 		name = "Contour",
 		visible = true,
-		color = Color(255, 0, 0),
-		width = 2
+		color = Color(0, 0, 0),
+		width = 10
 	},
 	GRID_TYPES.Thirds: {
 		name = "Thirds",
 		visible = true,
-		color = Color(0, 255, 0),
-		width = 8
+		color = Color(0, 1, 0, .5),
+		width = 4
 	},
 	GRID_TYPES.MinorThirds: {
 		name = "MinorThirds",
 		visible = true,
-		color = Color(255, 0, 0),
-		width = 2,
+		color = Color(1, 0, 0, .5),
+		width = 4,
 		subdivisions = 10, # TODO: implement me
 		with_central_cross = false # TODO: implement me
 	},
 	GRID_TYPES.CentralCross: {
 		name = "CentralCross",
 		visible = true,
-		color = Color(255, 0, 0),
-		width = 2
+		color = Color(1, 0, 0, .5),
+		width = 4
 	},
 	GRID_TYPES.CentralDiagonals: {
 		name = "MainDiagonals",
 		visible = true,
-		color = Color(255, 0, 0),
-		width = 2
+		color = Color(1, 0, 0, .5),
+		width = 4
 	}
 } setget ,get_grid_settings
 
@@ -69,18 +69,7 @@ func set_grid_visible(grid_type, value): settings[grid_type].visible = value
 func set_grid_width(grid_type, value): settings[grid_type].width = value
 func set_grid_color(grid_type, value): settings[grid_type].color = value
 	
-func reload():	
-	"""
-	Customize:
-		- Photo
-		- Save path
-		- Scale
-		- Grid type (thirds, sub thirds, cross)
-		- Grid visibility (on/off any)
-		- Each line line width, color
-		- Border
-	"""
-	
+func reload():
 	scale = Vector2(image_scale, image_scale)
 	
 	var size = texture.get_size()
