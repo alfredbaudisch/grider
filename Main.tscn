@@ -199,7 +199,6 @@ margin_bottom = 80.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="Thirds" type="VBoxContainer" parent="MainContainer/Toolbar/Grids"]
-editor/display_folded = true
 margin_left = 140.0
 margin_right = 262.0
 margin_bottom = 80.0
@@ -400,7 +399,6 @@ margin_bottom = 14.0
 text = "Grid: Main Diagonals"
 
 [node name="MainContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/MainDiagonals"]
-editor/display_folded = true
 margin_top = 18.0
 margin_right = 132.0
 margin_bottom = 42.0
@@ -417,7 +415,6 @@ margin_bottom = 24.0
 text = "      "
 
 [node name="WidthContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/MainDiagonals"]
-editor/display_folded = true
 margin_top = 46.0
 margin_right = 132.0
 margin_bottom = 62.0
@@ -531,16 +528,21 @@ current_path = "/home/alfredbaudisch/Desktop/Grider/Button.gd"
 [connection signal="pressed" from="MainContainer/Toolbar/MainActions/LoadSave/Save" to="." method="_on_Save_pressed"]
 [connection signal="value_changed" from="MainContainer/Toolbar/MainActions/ImageOptions/Scale/Scale" to="." method="_on_Scale_value_changed"]
 [connection signal="pressed" from="MainContainer/Toolbar/MainActions/ImageOptions/GridWithPhoto" to="." method="_on_GridWithPhoto_pressed"]
-[connection signal="toggled" from="MainContainer/Toolbar/Grids/Contour/MainContainer/Visible" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Visible_toggled"]
-[connection signal="value_changed" from="MainContainer/Toolbar/Grids/Contour/WidthContainer/Width" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Width_value_changed"]
-[connection signal="toggled" from="MainContainer/Toolbar/Grids/Thirds/MainContainer/Visible" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Visible_toggled"]
-[connection signal="value_changed" from="MainContainer/Toolbar/Grids/Thirds/WidthContainer/Width" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Width_value_changed"]
-[connection signal="toggled" from="MainContainer/Toolbar/Grids/MinorThirds/MainContainer/Visible" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Visible_toggled"]
-[connection signal="value_changed" from="MainContainer/Toolbar/Grids/MinorThirds/WidthContainer/Width" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Width_value_changed"]
-[connection signal="toggled" from="MainContainer/Toolbar/Grids/CentralCross/MainContainer/Visible" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Visible_toggled"]
-[connection signal="value_changed" from="MainContainer/Toolbar/Grids/CentralCross/WidthContainer/Width" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Width_value_changed"]
-[connection signal="toggled" from="MainContainer/Toolbar/Grids/MainDiagonals/MainContainer/Visible" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Visible_toggled"]
-[connection signal="value_changed" from="MainContainer/Toolbar/Grids/MainDiagonals/WidthContainer/Width" to="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" method="_on_Width_value_changed"]
+[connection signal="pressed" from="MainContainer/Toolbar/Grids/Contour/MainContainer/Visible" to="." method="_on_Visible_pressed" binds= [ 0 ]]
+[connection signal="color_changed" from="MainContainer/Toolbar/Grids/Contour/MainContainer/Color" to="." method="_on_Color_color_changed" binds= [ 0 ]]
+[connection signal="value_changed" from="MainContainer/Toolbar/Grids/Contour/WidthContainer/Width" to="." method="_on_Width_value_changed" binds= [ 0 ]]
+[connection signal="pressed" from="MainContainer/Toolbar/Grids/Thirds/MainContainer/Visible" to="." method="_on_Visible_pressed" binds= [ 1 ]]
+[connection signal="color_changed" from="MainContainer/Toolbar/Grids/Thirds/MainContainer/Color" to="." method="_on_Color_color_changed" binds= [ 1 ]]
+[connection signal="value_changed" from="MainContainer/Toolbar/Grids/Thirds/WidthContainer/Width" to="." method="_on_Width_value_changed" binds= [ 1 ]]
+[connection signal="pressed" from="MainContainer/Toolbar/Grids/MinorThirds/MainContainer/Visible" to="." method="_on_Visible_pressed" binds= [ 2 ]]
+[connection signal="color_changed" from="MainContainer/Toolbar/Grids/MinorThirds/MainContainer/Color" to="." method="_on_Color_color_changed" binds= [ 2 ]]
+[connection signal="value_changed" from="MainContainer/Toolbar/Grids/MinorThirds/WidthContainer/Width" to="." method="_on_Width_value_changed" binds= [ 2 ]]
+[connection signal="pressed" from="MainContainer/Toolbar/Grids/CentralCross/MainContainer/Visible" to="." method="_on_Visible_pressed" binds= [ 3 ]]
+[connection signal="color_changed" from="MainContainer/Toolbar/Grids/CentralCross/MainContainer/Color" to="." method="_on_Color_color_changed" binds= [ 3 ]]
+[connection signal="value_changed" from="MainContainer/Toolbar/Grids/CentralCross/WidthContainer/Width" to="." method="_on_Width_value_changed" binds= [ 3 ]]
+[connection signal="pressed" from="MainContainer/Toolbar/Grids/MainDiagonals/MainContainer/Visible" to="." method="_on_Visible_pressed" binds= [ 4 ]]
+[connection signal="color_changed" from="MainContainer/Toolbar/Grids/MainDiagonals/MainContainer/Color" to="." method="_on_Color_color_changed" binds= [ 4 ]]
+[connection signal="value_changed" from="MainContainer/Toolbar/Grids/MainDiagonals/WidthContainer/Width" to="." method="_on_Width_value_changed" binds= [ 4 ]]
 [connection signal="value_changed" from="MainContainer/PhotoScrollContainer/HBoxContainer/PhotoVScrollBar" to="MainContainer/PhotoScrollContainer/HBoxContainer/ViewportContainer/Viewport/Photo" method="_on_PhotoVScrollBar_value_changed"]
 [connection signal="file_selected" from="Dialogs/OpenFileDialog" to="." method="_on_OpenFileDialog_file_selected"]
 [connection signal="file_selected" from="Dialogs/SaveAsDialog" to="." method="_on_SaveAsDialog_file_selected"]

@@ -29,6 +29,7 @@ func _reload_ui():
 	if not has_photo():
 		grids.visible = false
 		save.disabled = true
+		image_options.visible = false
 		return
 	
 	var settings = photo.get_grid_settings()
@@ -51,6 +52,7 @@ func _reload_ui():
 	var ui_with_photo = image_options.get_node("GridWithPhoto")
 	ui_with_photo.set_pressed(photo.get_save_grid_with_photo())
 	
+	image_options.visible = true
 	grids.visible = true
 	save.disabled = false
 
@@ -97,3 +99,33 @@ func _on_Scale_value_changed(value):
 
 func _on_GridWithPhoto_pressed():
 	photo.set_save_grid_with_photo(!photo.get_save_grid_with_photo())
+
+#
+# Grids
+#
+
+func _get_grid_settings(grid_type_pos):
+	return photo.get_grid_settings()[grid_type_pos]
+
+func _on_Visible_pressed(grid_type):
+	photo.set_grid_visible(grid_type, !_get_grid_settings(grid_type).visible)
+	photo.reload()
+
+func _on_Width_value_changed(value, grid_type):
+	if not has_photo(): return
+	var current = _get_grid_settings(grid_type).width
+	
+	if current != value:
+		photo.set_grid_width(grid_type, value)
+		photo.reload()
+		_reload_ui()
+
+
+func _on_Color_color_changed(color, grid_type):
+	if not has_photo(): return
+	var current = _get_grid_settings(grid_type).color
+	
+	if current != color:
+		photo.set_grid_color(grid_type, color)
+		photo.reload()
+		_reload_ui()
