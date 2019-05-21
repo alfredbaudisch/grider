@@ -25,4 +25,4 @@ Download from the project website: [https://splitpainter.itch.io/grider](https:/
 
 - An image at full size may appear clipped in Grider, but it is correctly exported at full size. This will be fixed as soon as scrolling is implemented.
 - No way to scroll.
-- Additional issues, bug reporting and feature requests: https://github.com/alfredbaudisch/grider/issues​
+- Additional issues, bug reporting and feature requests: [https://github.com/alfredbaudisch/grider/issues](https://github.com/alfredbaudisch/grider/issues)
