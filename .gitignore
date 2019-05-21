@@ -7,3 +7,10 @@ export/
 
 # Mono-specific ignores
 .mono/
+
+dog.jpeg
+dog.jpeg.import
+grid.png
+grid.png.import
+grid-with-photo.png
+grid-with-photo.png.import
