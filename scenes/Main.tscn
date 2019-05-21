@@ -130,20 +130,31 @@ open_file_dialog_path = NodePath("Dialogs/OpenFileDialog")
 save_as_dialog_path = NodePath("Dialogs/SaveAsDialog")
 
 [node name="MainContainer" type="VBoxContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1017.0
-margin_bottom = 593.0
+margin_right = 1024.0
+margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="VSplitContainer2" type="VSplitContainer" parent="MainContainer"]
+margin_right = 1024.0
+margin_bottom = 5.0
+rect_min_size = Vector2( 0, 5 )
+
 [node name="Toolbar" type="HBoxContainer" parent="MainContainer"]
-margin_right = 1010.0
-margin_bottom = 80.0
+margin_top = 9.0
+margin_right = 1024.0
+margin_bottom = 89.0
 size_flags_horizontal = 3
 
+[node name="HSplitContainer3" type="HSplitContainer" parent="MainContainer/Toolbar"]
+margin_right = 10.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 10, 0 )
+
 [node name="MainActions" type="HBoxContainer" parent="MainContainer/Toolbar"]
-margin_right = 300.0
+editor/display_folded = true
+margin_left = 14.0
+margin_right = 314.0
 margin_bottom = 80.0
 
 [node name="LoadSave" type="VBoxContainer" parent="MainContainer/Toolbar/MainActions"]
@@ -194,6 +205,7 @@ margin_bottom = 80.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="ImageOptions" type="VBoxContainer" parent="MainContainer/Toolbar/MainActions"]
+editor/display_folded = true
 margin_left = 115.0
 margin_right = 300.0
 margin_bottom = 80.0
@@ -239,30 +251,30 @@ pressed = true
 text = "Grid and Grid with Photo"
 
 [node name="HSplitContainer2" type="HSplitContainer" parent="MainContainer/Toolbar"]
-margin_left = 304.0
-margin_right = 314.0
+margin_left = 318.0
+margin_right = 328.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="Grids" type="HBoxContainer" parent="MainContainer/Toolbar"]
-margin_left = 318.0
+margin_left = 332.0
 margin_right = 1010.0
 margin_bottom = 80.0
 size_flags_horizontal = 3
 
 [node name="Contour" type="VBoxContainer" parent="MainContainer/Toolbar/Grids"]
-margin_right = 122.0
+margin_right = 118.0
 margin_bottom = 80.0
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="MainContainer/Toolbar/Grids/Contour"]
-margin_right = 122.0
+margin_right = 118.0
 margin_bottom = 14.0
 text = "Grid: Contour"
 
 [node name="MainContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/Contour"]
 margin_top = 18.0
-margin_right = 122.0
+margin_right = 118.0
 margin_bottom = 42.0
 
 [node name="Visible" type="CheckBox" parent="MainContainer/Toolbar/Grids/Contour/MainContainer"]
@@ -278,7 +290,7 @@ text = "      "
 
 [node name="WidthContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/Contour"]
 margin_top = 46.0
-margin_right = 122.0
+margin_right = 118.0
 margin_bottom = 62.0
 
 [node name="Label" type="Label" parent="MainContainer/Toolbar/Grids/Contour/WidthContainer"]
@@ -289,7 +301,7 @@ text = "Width:"
 
 [node name="Width" type="HSlider" parent="MainContainer/Toolbar/Grids/Contour/WidthContainer"]
 margin_left = 46.0
-margin_right = 102.0
+margin_right = 98.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 1.0
@@ -298,34 +310,34 @@ value = 1.0
 rounded = true
 
 [node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/Contour/WidthContainer"]
-margin_left = 106.0
+margin_left = 102.0
 margin_top = 1.0
-margin_right = 122.0
+margin_right = 118.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 16, 0 )
 text = "1"
 align = 1
 
 [node name="HSplitContainer4" type="HSplitContainer" parent="MainContainer/Toolbar/Grids"]
-margin_left = 126.0
-margin_right = 136.0
+margin_left = 122.0
+margin_right = 132.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="Thirds" type="VBoxContainer" parent="MainContainer/Toolbar/Grids"]
-margin_left = 140.0
-margin_right = 262.0
+margin_left = 136.0
+margin_right = 254.0
 margin_bottom = 80.0
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="MainContainer/Toolbar/Grids/Thirds"]
-margin_right = 122.0
+margin_right = 118.0
 margin_bottom = 14.0
 text = "Grid: Thirds"
 
 [node name="MainContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/Thirds"]
 margin_top = 18.0
-margin_right = 122.0
+margin_right = 118.0
 margin_bottom = 42.0
 
 [node name="Visible" type="CheckBox" parent="MainContainer/Toolbar/Grids/Thirds/MainContainer"]
@@ -341,7 +353,7 @@ text = "      "
 
 [node name="WidthContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/Thirds"]
 margin_top = 46.0
-margin_right = 122.0
+margin_right = 118.0
 margin_bottom = 62.0
 
 [node name="Label" type="Label" parent="MainContainer/Toolbar/Grids/Thirds/WidthContainer"]
@@ -352,7 +364,7 @@ text = "Width:"
 
 [node name="Width" type="HSlider" parent="MainContainer/Toolbar/Grids/Thirds/WidthContainer"]
 margin_left = 46.0
-margin_right = 102.0
+margin_right = 98.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 1.0
@@ -361,34 +373,34 @@ value = 1.0
 rounded = true
 
 [node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/Thirds/WidthContainer"]
-margin_left = 106.0
+margin_left = 102.0
 margin_top = 1.0
-margin_right = 122.0
+margin_right = 118.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 16, 0 )
 text = "1	"
 align = 1
 
 [node name="HSplitContainer" type="HSplitContainer" parent="MainContainer/Toolbar/Grids"]
-margin_left = 266.0
-margin_right = 276.0
+margin_left = 258.0
+margin_right = 268.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="MinorThirds" type="VBoxContainer" parent="MainContainer/Toolbar/Grids"]
-margin_left = 280.0
-margin_right = 402.0
+margin_left = 272.0
+margin_right = 390.0
 margin_bottom = 80.0
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="MainContainer/Toolbar/Grids/MinorThirds"]
-margin_right = 122.0
+margin_right = 118.0
 margin_bottom = 14.0
 text = "Grid: Minor Thirds"
 
 [node name="MainContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/MinorThirds"]
 margin_top = 18.0
-margin_right = 122.0
+margin_right = 118.0
 margin_bottom = 42.0
 
 [node name="Visible" type="CheckBox" parent="MainContainer/Toolbar/Grids/MinorThirds/MainContainer"]
@@ -404,7 +416,7 @@ text = "      "
 
 [node name="WidthContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/MinorThirds"]
 margin_top = 46.0
-margin_right = 122.0
+margin_right = 118.0
 margin_bottom = 62.0
 
 [node name="Label" type="Label" parent="MainContainer/Toolbar/Grids/MinorThirds/WidthContainer"]
@@ -415,7 +427,7 @@ text = "Width:"
 
 [node name="Width" type="HSlider" parent="MainContainer/Toolbar/Grids/MinorThirds/WidthContainer"]
 margin_left = 46.0
-margin_right = 102.0
+margin_right = 98.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 1.0
@@ -424,34 +436,34 @@ value = 1.0
 rounded = true
 
 [node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/MinorThirds/WidthContainer"]
-margin_left = 106.0
+margin_left = 102.0
 margin_top = 1.0
-margin_right = 122.0
+margin_right = 118.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 16, 0 )
 text = "1	"
 align = 1
 
 [node name="HSplitContainer2" type="HSplitContainer" parent="MainContainer/Toolbar/Grids"]
-margin_left = 406.0
-margin_right = 416.0
+margin_left = 394.0
+margin_right = 404.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="CentralCross" type="VBoxContainer" parent="MainContainer/Toolbar/Grids"]
-margin_left = 420.0
-margin_right = 542.0
+margin_left = 408.0
+margin_right = 527.0
 margin_bottom = 80.0
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="MainContainer/Toolbar/Grids/CentralCross"]
-margin_right = 122.0
+margin_right = 119.0
 margin_bottom = 14.0
 text = "Grid: Central Cross"
 
 [node name="MainContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/CentralCross"]
 margin_top = 18.0
-margin_right = 122.0
+margin_right = 119.0
 margin_bottom = 42.0
 
 [node name="Visible" type="CheckBox" parent="MainContainer/Toolbar/Grids/CentralCross/MainContainer"]
@@ -467,7 +479,7 @@ text = "      "
 
 [node name="WidthContainer" type="HBoxContainer" parent="MainContainer/Toolbar/Grids/CentralCross"]
 margin_top = 46.0
-margin_right = 122.0
+margin_right = 119.0
 margin_bottom = 62.0
 
 [node name="Label" type="Label" parent="MainContainer/Toolbar/Grids/CentralCross/WidthContainer"]
@@ -478,7 +490,7 @@ text = "Width:"
 
 [node name="Width" type="HSlider" parent="MainContainer/Toolbar/Grids/CentralCross/WidthContainer"]
 margin_left = 46.0
-margin_right = 102.0
+margin_right = 99.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 1.0
@@ -487,23 +499,23 @@ value = 1.0
 rounded = true
 
 [node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/CentralCross/WidthContainer"]
-margin_left = 106.0
+margin_left = 103.0
 margin_top = 1.0
-margin_right = 122.0
+margin_right = 119.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 16, 0 )
 text = "1	"
 align = 1
 
 [node name="HSplitContainer3" type="HSplitContainer" parent="MainContainer/Toolbar/Grids"]
-margin_left = 546.0
-margin_right = 556.0
+margin_left = 531.0
+margin_right = 541.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="MainDiagonals" type="VBoxContainer" parent="MainContainer/Toolbar/Grids"]
-margin_left = 560.0
-margin_right = 692.0
+margin_left = 545.0
+margin_right = 677.0
 margin_bottom = 80.0
 size_flags_horizontal = 3
 
@@ -558,35 +570,41 @@ rect_min_size = Vector2( 16, 0 )
 text = "1	"
 align = 1
 
+[node name="HSplitContainer4" type="HSplitContainer" parent="MainContainer/Toolbar"]
+margin_left = 1014.0
+margin_right = 1024.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 10, 0 )
+
 [node name="VSplitContainer" type="VSplitContainer" parent="MainContainer"]
-margin_top = 84.0
-margin_right = 1010.0
-margin_bottom = 94.0
+margin_top = 93.0
+margin_right = 1024.0
+margin_bottom = 103.0
 rect_min_size = Vector2( 0, 10 )
 size_flags_horizontal = 3
 
 [node name="PhotoScrollContainer" type="ScrollContainer" parent="MainContainer"]
-margin_top = 98.0
-margin_right = 1010.0
-margin_bottom = 586.0
+margin_top = 107.0
+margin_right = 1024.0
+margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/PhotoScrollContainer"]
-margin_right = 1010.0
-margin_bottom = 488.0
+margin_right = 1024.0
+margin_bottom = 493.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ViewportContainer" type="ViewportContainer" parent="MainContainer/PhotoScrollContainer/HBoxContainer"]
-margin_right = 1010.0
-margin_bottom = 488.0
+margin_right = 1024.0
+margin_bottom = 493.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
 
 [node name="Viewport" type="Viewport" parent="MainContainer/PhotoScrollContainer/HBoxContainer/ViewportContainer"]
-size = Vector2( 1010, 488 )
+size = Vector2( 1024, 493 )
 own_world = true
 transparent_bg = true
 handle_input_locally = false
@@ -601,6 +619,40 @@ current = true
 scale = Vector2( 0.2, 0.2 )
 region_rect = Rect2( 0, 0, 450, 450 )
 script = ExtResource( 2 )
+settings = {
+0: {
+"color": Color( 0, 0, 0, 1 ),
+"name": "Contour",
+"visible": true,
+"width": 10
+},
+1: {
+"color": Color( 0, 1, 0, 0.5 ),
+"name": "Thirds",
+"visible": true,
+"width": 8
+},
+2: {
+"color": Color( 1, 0, 0, 0.5 ),
+"name": "MinorThirds",
+"subdivisions": 10,
+"visible": true,
+"width": 4,
+"with_central_cross": false
+},
+3: {
+"color": Color( 0.74902, 0.109804, 0.905882, 0.501961 ),
+"name": "CentralCross",
+"visible": true,
+"width": 4
+},
+4: {
+"color": Color( 0.176471, 0.427451, 0.560784, 0.662745 ),
+"name": "MainDiagonals",
+"visible": true,
+"width": 4
+}
+}
 
 [node name="Grid" type="Node2D" parent="MainContainer/PhotoScrollContainer/HBoxContainer/ViewportContainer/Viewport/Photo"]
 
