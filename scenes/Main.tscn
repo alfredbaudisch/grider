@@ -152,13 +152,11 @@ margin_bottom = 80.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="MainActions" type="HBoxContainer" parent="MainContainer/Toolbar"]
-editor/display_folded = true
 margin_left = 14.0
 margin_right = 314.0
 margin_bottom = 80.0
 
 [node name="LoadSave" type="VBoxContainer" parent="MainContainer/Toolbar/MainActions"]
-editor/display_folded = true
 margin_right = 97.0
 margin_bottom = 80.0
 
@@ -196,7 +194,7 @@ rect_min_size = Vector2( 0, 16 )
 custom_colors/font_color_disabled = Color( 0.588235, 0.305882, 0.305882, 1 )
 custom_colors/font_color = Color( 0, 1, 0.0392157, 1 )
 disabled = true
-text = "SAVE"
+text = "Export Grid"
 
 [node name="HSplitContainer" type="HSplitContainer" parent="MainContainer/Toolbar/MainActions"]
 margin_left = 101.0
@@ -235,6 +233,7 @@ min_value = 0.05
 max_value = 1.0
 step = 0.05
 value = 0.05
+ticks_on_borders = true
 
 [node name="ScaleDisplay" type="Label" parent="MainContainer/Toolbar/MainActions/ImageOptions/Scale"]
 margin_left = 145.0
@@ -308,6 +307,7 @@ min_value = 1.0
 max_value = 40.0
 value = 1.0
 rounded = true
+ticks_on_borders = true
 
 [node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/Contour/WidthContainer"]
 margin_left = 102.0
@@ -371,6 +371,7 @@ min_value = 1.0
 max_value = 40.0
 value = 1.0
 rounded = true
+ticks_on_borders = true
 
 [node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/Thirds/WidthContainer"]
 margin_left = 102.0
@@ -434,6 +435,7 @@ min_value = 1.0
 max_value = 40.0
 value = 1.0
 rounded = true
+ticks_on_borders = true
 
 [node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/MinorThirds/WidthContainer"]
 margin_left = 102.0
@@ -497,6 +499,7 @@ min_value = 1.0
 max_value = 40.0
 value = 1.0
 rounded = true
+ticks_on_borders = true
 
 [node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/CentralCross/WidthContainer"]
 margin_left = 103.0
@@ -560,6 +563,7 @@ min_value = 1.0
 max_value = 40.0
 value = 1.0
 rounded = true
+ticks_on_borders = true
 
 [node name="WidthDisplay" type="Label" parent="MainContainer/Toolbar/Grids/MainDiagonals/WidthContainer"]
 margin_left = 116.0
@@ -624,33 +628,33 @@ settings = {
 "color": Color( 0, 0, 0, 1 ),
 "name": "Contour",
 "visible": true,
-"width": 10
+"width": 20
 },
 1: {
-"color": Color( 0, 1, 0, 0.5 ),
+"color": Color( 0, 1, 0, 1 ),
 "name": "Thirds",
 "visible": true,
-"width": 8
+"width": 10
 },
 2: {
-"color": Color( 1, 0, 0, 0.5 ),
+"color": Color( 1, 0, 0, 0.745098 ),
 "name": "MinorThirds",
 "subdivisions": 10,
 "visible": true,
-"width": 4,
+"width": 10,
 "with_central_cross": false
 },
 3: {
-"color": Color( 0.74902, 0.109804, 0.905882, 0.501961 ),
+"color": Color( 0.74902, 0.109804, 0.905882, 1 ),
 "name": "CentralCross",
 "visible": true,
-"width": 4
+"width": 10
 },
 4: {
-"color": Color( 0.176471, 0.427451, 0.560784, 0.662745 ),
+"color": Color( 0.176471, 0.427451, 0.560784, 1 ),
 "name": "MainDiagonals",
 "visible": true,
-"width": 4
+"width": 10
 }
 }
 
@@ -663,31 +667,29 @@ margin_right = 1010.0
 margin_bottom = 506.0
 
 [node name="Dialogs" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="OpenFileDialog" type="FileDialog" parent="Dialogs"]
 margin_left = 46.5
 margin_top = 38.0
 margin_right = 640.5
 margin_bottom = 465.0
-window_title = "Open a File"
+window_title = "Open Reference Image"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.png,*.jpg,*.jpeg ; PNG and JPG Images" )
-current_dir = "/home/alfredbaudisch/Desktop/Grider"
-current_file = "default_env.tres"
-current_path = "/home/alfredbaudisch/Desktop/Grider/default_env.tres"
+current_dir = "P:/Dev/godot/projects/grider"
+current_path = "P:/Dev/godot/projects/grider/"
 
 [node name="SaveAsDialog" type="FileDialog" parent="Dialogs"]
 margin_left = 49.0
 margin_top = 38.0
 margin_right = 648.0
 margin_bottom = 464.0
+window_title = "Set Grid Save Path"
 access = 2
 filters = PoolStringArray( "*.png; PNG Image" )
-current_dir = "/home/alfredbaudisch/Desktop/Grider"
-current_file = "Button.gd"
-current_path = "/home/alfredbaudisch/Desktop/Grider/Button.gd"
+current_dir = "P:/Dev/godot/projects/grider"
+current_path = "P:/Dev/godot/projects/grider/"
 
 [connection signal="pressed" from="MainContainer/Toolbar/MainActions/LoadSave/LoadPhoto" to="." method="_on_LoadPhoto_pressed"]
 [connection signal="pressed" from="MainContainer/Toolbar/MainActions/LoadSave/SetSavePath" to="." method="_on_SetSavePath_pressed"]
