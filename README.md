@@ -1,6 +1,8 @@
 # Grider - The Grid Creator
 Create, customize and export grids on top of reference images, for drawing guidance, a tool for artists and those learning how to draw. [https://splitpainter.itch.io/grider](https://splitpainter.itch.io/grider)
 
+![Output](example_output.jpg)
+
 With Grider you load a reference image, customize different grids on top of it and then export the grid and import it into your your prefered drawing application to use as a drawing guidance. Since the exported grid is a PNG image, you can also print it and modify as needed.
 
 Grider also exports the grid on top of the reference image, as a separate file.
