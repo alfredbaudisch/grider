@@ -7,6 +7,8 @@ With Grider you load a reference image, customize different grids on top of it a
 
 Grider also exports the grid on top of the reference image, as a separate file.
 
+The Grids produced allow you to learn following **the Leonardo Da Vinci method**.
+
 ## How to Use
 ![Grider in Action](https://img.itch.zone/aW1hZ2UvNDI2MzAzLzIxMjg3MjcuZ2lm/original/cbsE56.gif)
 
